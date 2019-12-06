@@ -67,7 +67,7 @@ func handleLogin(wr http.ResponseWriter, r *http.Request) {
 		loginResp.Success = false
 		loginResp.Msg = "Login failed, error request body."
 	} else {
-		if loginReq.Username == "admin" && loginReq.Password == "admin@123" {
+		if loginReq.Username == config.Username && loginReq.Password == config.Password {
 			loginResp.Success = true
 			loginResp.Msg = "Login success"
 			loginResp.Token = generateToken()
