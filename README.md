@@ -10,7 +10,7 @@ Download binary from [release](https://github.com/dongfg/fava-auth/releases) pag
 ```
 
 ### How does it work
-- check if has cookie `x-auth-fava`, and if cookie if validate(validate jwt and expire time)
+- check if has cookie `x-auth-fava` and valid (validate jwt and expire time)
 - if not, redirect to login page
 - after success login, write a cookie item
 - cookie valid now, reverse proxy to fava ui
