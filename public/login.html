@@ -1,194 +1,99 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beancount Fava Auth</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon"
+          href="data:image/x-icon;base64,AAABAAEAAAAAAAEAIADcCgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgDAAAAa6xYVAAAAmRQTFRFIFCBJFOCaoimq7jGucPNpLPDY4KiIlKClai75OTkgJixSnCW4+Pj09fbNF+LdZCsUHSZeZOtU3abeZOuT3OYdZCrY4OiJ1WELluIbououMLN19rdv8jRr7zJnq7AVXibN2GMI1KCSW+Vc46qrrvIytDWusTOjKG3XX6gMV2JRWyU3N7f0NTZprXEa4imLFmHbImnsb3JaIalMFyJx83UzdLYjqO4R26VMl2KgpqyzdLXp7bFVHebyM7V4uLjTnOYRGuT3+Dhmau+O2SOdpGs1tncMl6KorLCP2eQwsrS1NjcWXue0tbbmqy+LVqH2tzfvcbQQmmS3N3fTHGXUnaanK2/ztPYtcDMIVGBKleFlam8YYGiiJ61y9HX29zez9PYxs3UzNLY1djbv8jQKVeFZ4WkVnmcRm2UJlWEKleGPGWOX3+hfZawq7nHxMvTo7PCR22UepOusr7Kkqa60dbahZyzOGKNsL3J4OHi1djcQGiRqLfFOmSO3N7g1NfbM16KWHqdxczUpbTDlKe7ZIOjPGWP2NvdMFyIk6a7mKq9NWCLQGiQK1iGZYSjOWONcI2pY4Oji6G3h560qbfFco6qhZy0j6O4iqC2Q2qS293foLHCcY2prbrI4eHiuMPNs7/KKFaFxs3Vb4uoxc3UVniccY2ql6q9XH2fJVODqbfGvsfQWXudaIakvMbP3t/hYoKiwMjRW3yffJavPmeQhJuze5WvsLzJtsHMh521na6/lai8UXWapLPCPmaQorLDbImmaYemSW6Vt8LNzdPYg5uzZoWkk6e7jaK4m62/TnKYd5GsfZav3YMvFgAACDNJREFUeNrtnflfFVUYxmVJPKyCgWzCveIF2UXgmrIEScjFDItFLhKiXhXQEBEVUsktMDFScQsXDHMv0rTUrGyz9Z/qgqggc2bOGWbm7Qzv92fO/TzPw507M+e87znTpiEIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiCIHnh4enmP45Xp0JIMxWcGmYAvtCgj8fOfGEBAILQqAwkiEsyEVmUgwVIBhECrMpBZGAAGgAFgABgABoABYAAYAAaAAWAAGAAGgAGM8Cq0KgMJlQogbDa0LIMInxkRKRVAVPScmIhYC7Q8fbHOjZtnI3IExCfMT4SWqRM+Sb7RyYSBlNQ0C7RY7UlfkMHkfvR6SF2YCa1YUwJ9s9jdPyXbvghatWa8tngJr/1hknNyoZVrgnVBnhr7w+TnvA6tfvIUzFFrf5jCN5ZCG5gcPkVvTsa/m5QgK7SJSVC8bJL2h/EqgbahmkUODfwTUuoJbUQly9/SxL+bFW9De1HDwjKt/BOy8h1oN/x4vqudf/dzUTm0H17CNPXvvhsI9h2oiNLWPyGV0Ja4KKnS2j9ZVQ1tigNnvOb+SQ20KR5qtPcfJdLj0Op87QOohTbFQeJ72vvPLoZ2xYFde/8kFNoUBwV1jKbq1tjq67PWrmP40/UuaFccxDAYKl1l37BxU6DT1dAY3lSxecv7zfJ/vxnaFAdJil+AqK3TLS+PcrZs86I/O7WKNCewXcF+2w7aJM/OiF3SM8ftIq2bFbfJ2i/cvlNudIG9Q2JQDLQpHjxl/ds2Ko231AZMuGQ+gDbFw245/xl7GD7BYt87flQCtCceijtl/O9iXO7xmzd2VNWH0KZ42Cfjfz9zV4hPWvaLYUXQnrhIoPuv45nUsVQ+G9bcCO2JiwP0AA7yfVLa6MV0CNoSFy76e1DUR5yf1RI9PMxLpGcg929gFzWAA9wf1n24bcnHR6At8dFDnwpNU/Fx6UehDfGS608NYBO0NkP4hP4T0AutzRA+pQZgM1fNC404agD14dDaDCGCGkCnBVqbIRyiPwcVQGszhBD6hPgxaG2G0EOfDxNrbU8t3fR5vamxQ4BLphT4OLQ4Q9hKD6BOpKlN1ZygB0Dqed8HRSRWJgDiaIKWpz/dHXIJ2ISr9OGnTy4A0nkMWp/unJQNgLSfMntv0NIu+QRIxlxoiTqzWyEAknza3FMD8/2VEiClZ1hWiETFI1oxAEI6Dp+F1qkfx5S/Am4+668QqfCPB+s8lgAIyW/d4ITWqg89SjeC59gSCqDF6sI51gDct4TzJusQHMFnBXsC7q+BvdwHWrHWOFt5EiAXLoZaoCVrTC9vr+C6yuXmekZuCeBMwP2y7Guqt+UQFR0TXf25Jvo12KiqZ2Tg0CVo4ZqR26YmARIdIdyaOI2zLG8FEnxeJGSboASJLHXTUtQHpUNr14bqwVKVEVwebIAWrw0lfSoTIJFfQGvXBp8rajvoLlwVrECKRu+KCyojyLsGrV0j9kWqTKB9x3Vo7dow+8pllRHc6IbWrhHOkw51Cdw0TXmdy1NdP22KeTba87i1W01PfZmZzt9oOajiBaHuS2jZWmIp+oo7gaGvoVVrSkNsP++bcpnZiksswbf5ErBZoCVrTcOdZSw9w8/JMdFU0TOavrnJkYCpfgifMfvWVua9hvLMMknyEndrsxkTCIaWqheJofvZfgdNM1U4gaODTPcENU1HotAY4VAOoNWEN4IXOM8pbruaLNhmWrxk3turkMC30BL1pmVAPoBIU18Dw7hOywYQZebaslF8ZRMIg5ZnALJbsIi0nZZaGr6TCeA+tDojuNtBD6DZJMtl8gTTA0gxyVKRPOn08qJCsxeaP+UB/StgnhlyOXLpS4nm2G9fiW76htQmWTFX4NJaDGBqXwJO+oEcFdDaOEiq6buq7uWlibpsMtQC7YqdkVLZ+gI1Q69RO06qxGlAT3SMKF5zR8XYLdQrwOEB7YuV6oejkpP5t4KrptfTeEP7YmbM8/xD3oaQufQagu+hfbHyaOzs3m3O59dKqn8SAW2MkSPjt5Go28GzpBFSSPVfKMgiufWHl5XHxzIPTpTZYXmJIF12iydKz6/8kW1so1zP4U/Qzti4Jfkj1vGA5R6eeUPGP3kMbY2JpbTV3qpTik3jfrIFA10WaG8sNOyiOyitKZdrF3b6ynec3oD2xsRxWQ/tkUFNlOWdxp8dRJ7V0N5YWN2u4ILszThVPuFYVWvPYsVi4mYRjhgoYTpdzL+qz775lz2NI9eDR3fSHfvAkPIoEc6YcP3K4n+UdY6LAxmt91f+xrTdAMkSoUZoIYd/Xq5Am2NBj9NVRokXorM4TDf/Q4+gvTFxKUOvAOzQ1hgJ1OGMsWHWC9NHecRbD/9RAq0JZuboEIBQh642nND8pLXfoT1x8oR/8whZ/hDrhAE3Z9X2SUrSL2DvpCtB8Z2ImUohnoAmELteI/9/Cvj/HyH8jFLhKwtD26B9TAK/85P2XyV297j1ySSvAy/GqeT/L65Bh3r7pXFmqI12eqq8JRbGCP/vH8WaG9PJbd/fS6RaEEV6i+5zPR4np7IvpQmCddE9b9bO+bzjBdBydcGjJ25ZttJuKoVZ9n1iHS7Hx9GZj/9aaaNcDmWO1JPlU6EcPNNvhpT/bT2iPvTyEyQVwN/QqgxkllQAU6MQHAPAADAADAADwAAwAAwAA8AAMAAMAAPAAKZsAP9IBSBGGZg25Er4nwo7xDzHQ6ItZAa0KEMJr623jcPx71SYDh6L9fo4hKsCQhAEQRAEQRAEQRAEQRAEQRAEQRAEQRAEQQThP3CMKU31bsegAAAAAElFTkSuQmCC"/>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Beancount</title>
     <style>
+        html,
         body {
-            text-align: center;
+            height: 100%;
+        }
+
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .form-signin {
             width: 100%;
-            font-size: 16px;
-            font-family: 'Helvetica', 'Arial', sans-serif;
-        }
-
-        .wrap-login {
-            padding-bottom: 90px;
-            padding-top: 50px;
-        }
-
-        .login {
+            max-width: 330px;
+            padding: 15px;
             margin: auto;
-            width: 390px;
-            padding: 10px;
         }
 
-        .login .title {
-            font-size: 24px;
-            color: #403866;
-            line-height: 1.2;
-            text-align: center;
-        }
-
-        .wrap-input {
+        .form-signin .form-control {
             position: relative;
-            background-color: #e6e6e6;
-            border: 1px solid transparent;
-            border-radius: 3px;
-            margin-bottom: 16px;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
         }
 
-        input {
-            outline: none;
-            border: none;
-            overflow: visible;
-            margin: 0;
-            color: #403866;
-            line-height: 1.2;
-            font-size: 24px;
-            font-weight: bold;
-            display: block;
-            width: 100%;
-            background: transparent;
-            height: 62px;
-            padding: 0 20px 0 38px;
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+        .form-signin input[type="text"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .form-signin input[type="password"] {
+            margin-bottom: 5px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
         }
 
         .error {
             color: #ff0081;
             text-align: right;
-        }
-
-        .bubbly-button {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            display: inline-block;
-            font-size: 16px;
-            padding: 1em 2em;
-            margin-top: 10px;
-            margin-bottom: 60px;
-            -webkit-appearance: none;
-            appearance: none;
-            background-color: #ff0081;
-            color: #fff;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-            box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
-        }
-
-        .bubbly-button:focus {
-            outline: 0;
-        }
-
-        .bubbly-button:before, .bubbly-button:after {
-            position: absolute;
-            content: '';
-            display: block;
-            width: 140%;
-            height: 100%;
-            left: -20%;
-            z-index: -1000;
-            transition: all ease-in-out 0.5s;
-            background-repeat: no-repeat;
-        }
-
-        .bubbly-button:before {
-            display: none;
-            top: -75%;
-            background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 20%, #ff0081 20%, transparent 30%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
-            background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
-        }
-
-        .bubbly-button:after {
-            display: none;
-            bottom: -75%;
-            background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
-            background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
-        }
-
-        .bubbly-button:active {
-            transform: scale(0.9);
-            background-color: #e60074;
-            box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
-        }
-
-        .bubbly-button.animate:before {
-            display: block;
-            animation: topBubbles ease-in-out 0.75s forwards;
-        }
-
-        .bubbly-button.animate:after {
-            display: block;
-            animation: bottomBubbles ease-in-out 0.75s forwards;
-        }
-
-        @keyframes topBubbles {
-            0% {
-                background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
-            }
-            50% {
-                background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
-            }
-            100% {
-                background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-                background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-            }
-        }
-
-        @keyframes bottomBubbles {
-            0% {
-                background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
-            }
-            50% {
-                background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
-            }
-            100% {
-                background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
-                background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-            }
+            margin-bottom: 5px;
         }
     </style>
 </head>
-<body>
-<div class="wrap-login">
-    <div class="login">
-        <div class="title">
-            <h1>Beancount Fava</h1>
-        </div>
-        <div class="form">
-            <div class="wrap-input">
-                <label>
-                    <input type="text" id="username" name="username" placeholder="Username" autocomplete="off"
-                           required/>
-                </label>
-            </div>
-            <div class="wrap-input">
-                <label>
-                    <input type="password" id="password" name="password" placeholder="Password" required/>
-                </label>
-            </div>
-            <div class="error">
-                <span id="error" style="visibility: hidden">no error</span>
-            </div>
-            <div>
-                <button class="bubbly-button">Login</button>
-            </div>
-        </div>
+<body class="text-center">
+<form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Beancount Fava</h1>
+    <label for="username" class="sr-only">Username</label>
+    <input type="text" id="username" class="form-control" placeholder="Username" required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Password" required>
+    <div class="error">
+        <span id="error" style="visibility: hidden">no error</span>
     </div>
-</div>
+    <button class="btn btn-lg btn-primary btn-block" type="button" id="login">Login</button>
+</form>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 <script type="text/javascript">
-    let animateButton = function (e) {
-        e.preventDefault();
-        e.target.classList.remove('animate');
+    let login = function () {
 
-        e.target.classList.add('animate');
-        setTimeout(function () {
-            e.target.classList.remove('animate');
-        }, 700);
-
+    }
+    $("#login").bind("click", function () {
         let username = $("#username");
         let password = $("#password");
         if (username.val() !== "" && password.val() !== "") {
@@ -212,13 +117,7 @@
             password.val("");
             password.focus()
         }
-    };
-
-    let bubblyButtons = document.getElementsByClassName("bubbly-button");
-    for (let i = 0; i < bubblyButtons.length; i++) {
-        bubblyButtons[i].addEventListener('click', animateButton, false);
-    }
-    $("#username").focus();
+    });
 </script>
 </body>
 </html>
