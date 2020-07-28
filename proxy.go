@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/gobuffalo/packr/v2"
+	"github.com/markbates/pkger"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -29,8 +29,6 @@ type loginResp struct {
 	Token   string `json:"token"`
 }
 
-var box = packr.New("public", "./public")
-
 func (p *proxy) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 	if req.Method == "POST" && req.URL.Path == "/login" {
 		handleLogin(wr, req)
@@ -38,6 +36,7 @@ func (p *proxy) ServeHTTP(wr http.ResponseWriter, req *http.Request) {
 	}
 
 	if req.Method == "GET" && req.URL.Path == "/login.html" {
+		box, _ := pkger.Open("/public")
 		http.FileServer(box).ServeHTTP(wr, req)
 		return
 	}
