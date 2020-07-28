@@ -1,4 +1,3 @@
 dist/
 .idea/
-main-packr.go
-packrd/
+pkged.go
