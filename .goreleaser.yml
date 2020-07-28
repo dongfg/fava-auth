@@ -1,7 +1,7 @@
 before:
   hooks:
     - go mod download
-    - packr2
+    - pkger
 builds:
   - env:
       - CGO_ENABLED=0
